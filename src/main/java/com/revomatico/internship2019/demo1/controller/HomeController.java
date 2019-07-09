@@ -1,9 +1,6 @@
 package com.revomatico.internship2019.demo1.controller;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
+import io.vavr.collection.List;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,16 +12,16 @@ public class HomeController {
   }
 
   private String table() {
-    List<List<String>> rows = new ArrayList<>();
-    List<String> list= new ArrayList<>();
-    rows.add(list);
-    list.add("concert rock");
-    list.add("2019-07-09 18:00");
-    
-    String result = "";
-    for (List<String> row : rows) {
-      result += row(row.get(0),row.get(1));
-    }
+    List<List<String>> rows = List.of(List.of("concert rock", "2019-07-09 18:00"), List.of("concert rock2", "2019-07-09 18:00"),
+        List.of("concert rock3", "2019-07-09 18:00"), List.of("concert rock4", "2019-07-09 18:00"),
+        List.of("concert rock5", "2019-07-09 18:00"));
+
+    String result = rows.map(row -> row(row.get(0), row.get(1)+"bla")).mkString();
+    // return rows.mkString();
+    // String result = "";
+    // for (List<String> row : rows) {
+    // result += row(row.get(0), row.get(1));
+    // }
     return tag("table", tag("tr", tag("th", "name") + tag("th", "date")) + result);
   }
 
