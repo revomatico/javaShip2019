@@ -74,6 +74,11 @@
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+		  <groupId>io.vavr</groupId>
+		  <artifactId>vavr</artifactId>
+		  <version>0.10.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
