@@ -8,14 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
   @RequestMapping("/")
   public String home() {
-    List<List<String>> rows = readEvents();
-    String table = displayEvents(rows);
-    return "Events:<br/>" + table;
+    return displayEvents(readEvents());
   }
 
   private String displayEvents(List<List<String>> rows) {
-    String result = rows.map(row -> row(row.get(0), row.get(1)+"bla")).mkString();
-    return tag("table", tag("tr", tag("th", "name") + tag("th", "date")) + result);
+    String displayedRows = rows.map(row -> row(row.get(0), row.get(1)+"bla")).mkString();
+    String table = tag("table", tag("tr", tag("th", "name") + tag("th", "date")) + displayedRows);
+    return "Events:<br/>" + table;
   }
 
   private List<List<String>> readEvents() {
