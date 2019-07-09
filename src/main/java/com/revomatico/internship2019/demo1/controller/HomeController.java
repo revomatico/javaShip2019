@@ -23,14 +23,13 @@ public class HomeController {
 
   private List<List<String>> readEvents() throws FileNotFoundException {
     List<List<String>> rows = List.empty();
-    System.out.println("current dir:" + new File(".").getAbsolutePath());
-    Scanner sc = new Scanner(new File("src\\main\\resources\\events.csv"));
-    while (sc.hasNext()) {
-      String line = sc.nextLine();
-      String[] vals = line.split(",");
-      rows = rows.append(List.of(vals[0], vals[1]));
+    try (Scanner sc = new Scanner(new File("src\\main\\resources\\events.csv"))) {
+      while (sc.hasNext()) {
+        String line = sc.nextLine();
+        String[] vals = line.split(",");
+        rows = rows.append(List.of(vals[0], vals[1]));
+      }
     }
-    sc.close();
     return rows;
     // List<List<String>> rows = List.of(List.of("concert rock", "2019-07-09 18:00"), List.of("concert rock2",
     // "2019-07-09 18:00"),
