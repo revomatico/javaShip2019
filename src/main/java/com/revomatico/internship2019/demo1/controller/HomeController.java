@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
   @RequestMapping("/")
-  public String home() throws FileNotFoundException {
-    return displayEvents(readEvents());
+  public String home() throws Exception {
+	  
+    return displayEvents(new Reading().readEvents());
   }
 
   private String displayEvents(List<List<String>> rows) {
@@ -21,22 +22,22 @@ public class HomeController {
     return "Events:<br/>" + table;
   }
 
-  private List<List<String>> readEvents() throws FileNotFoundException {
-    List<List<String>> rows = List.empty();
-    try (Scanner sc = new Scanner(new File("src\\main\\resources\\events.csv"))) {
-      while (sc.hasNext()) {
-        String line = sc.nextLine();
-        String[] vals = line.split(",");
-        rows = rows.append(List.of(vals[0], vals[1]));
-      }
-    }
-    return rows;
-    // List<List<String>> rows = List.of(List.of("concert rock", "2019-07-09 18:00"), List.of("concert rock2",
-    // "2019-07-09 18:00"),
-    // List.of("concert rock3", "2019-07-09 18:00"), List.of("concert rock4", "2019-07-09 18:00"),
-    // List.of("concert rock5", "2019-07-09 18:00"));
-    // return rows;
-  }
+//  private List<List<String>> readEvents() throws FileNotFoundException {
+//    List<List<String>> rows = List.empty();
+//    try (Scanner sc = new Scanner(new File("src\\main\\resources\\events.csv"))) {
+//      while (sc.hasNext()) {
+//        String line = sc.nextLine();
+//        String[] vals = line.split(",");
+//        rows = rows.append(List.of(vals[0], vals[1]));
+//      }
+//    }
+//    return rows;
+//    // List<List<String>> rows = List.of(List.of("concert rock", "2019-07-09 18:00"), List.of("concert rock2",
+//    // "2019-07-09 18:00"),
+//    // List.of("concert rock3", "2019-07-09 18:00"), List.of("concert rock4", "2019-07-09 18:00"),
+//    // List.of("concert rock5", "2019-07-09 18:00"));
+//    // return rows;
+//  }
 
   private String tag(String string, String result) {
     return tagAsHtml(string, result);
