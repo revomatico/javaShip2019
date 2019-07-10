@@ -13,7 +13,7 @@ public class HomeController {
   @RequestMapping("/")
   public String home() throws Exception {
 	  
-    return displayEvents(new Reading().readEvents());
+    return displayEvents(new MyReading().readEvents());
   }
 
   private String displayEvents(List<List<String>> rows) {
