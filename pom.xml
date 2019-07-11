@@ -23,6 +23,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
+		
+		<dependency> 
+	    	<groupId>com.opencsv</groupId> 
+	    	<artifactId>opencsv</artifactId> 
+	    	<version>4.1</version> 
+		</dependency> 
     <!--
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -33,6 +39,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<dependency>
+    <groupId>com.opencsv</groupId> 
+    <artifactId>opencsv</artifactId> 
+    <version>4.1</version> 
+</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
@@ -83,6 +94,11 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-csv</artifactId>
 			<version>1.5</version>
+		</dependency>
+		<dependency>
+			<groupId>io.vavr</groupId>
+			<artifactId>vavr-match</artifactId>
+			<version>0.10.0</version>
 		</dependency>
 	</dependencies>
 
