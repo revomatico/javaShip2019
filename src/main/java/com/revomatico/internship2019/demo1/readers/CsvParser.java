@@ -1,4 +1,4 @@
-package com.revomatico.internship2019.demo1;
+package com.revomatico.internship2019.demo1.readers;
 
 import java.io.IOException;
 import java.io.Reader;
