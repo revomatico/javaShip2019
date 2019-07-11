@@ -9,8 +9,7 @@ public class EventsRepository {
 
   public EventsRepository(EventsReader eventsReader) {
     this.eventsReader = eventsReader;
-    events = eventsReader.readEvents()
-        .map(x/* :List<String> */ -> new Event(x.get(0), x.get(1)));
+    events = eventsReader.readEvents().map(x/* :List<String> */ -> new Event(x.get(0), x.get(1), x));
   }
 
   public List<Event> readEvents() {
@@ -19,6 +18,6 @@ public class EventsRepository {
 
   public void addEvent(Event event) {
     events = events.append(event);
-    //eventsReader.addEvent(event);
+    // eventsReader.addEvent(event);
   }
 }
