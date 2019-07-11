@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import com.revomatico.internship2019.demo1.controller.WrappedException;
-
 import io.vavr.collection.List;
 
 public class ManualEventsReader implements EventsReader {
