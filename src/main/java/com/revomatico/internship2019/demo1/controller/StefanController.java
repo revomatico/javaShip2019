@@ -21,7 +21,7 @@ import io.vavr.collection.List;
 public class StefanController {
   @RequestMapping("/custom")
   public String home() throws IOException {
-    return displayEvents(readEvents());
+    return displayEvents(new StefanEventReader().readEvents());
   }
 
   private String displayEvents(List<List<String>> rows) {
@@ -30,24 +30,6 @@ public class StefanController {
     return "Events custom:<br/>" + table;
   }
 
-  private List<List<String>> readEvents() throws IOException {
-    List<List<String>> rows = List.empty();
-        
-    try (
-    		BufferedReader reader = new BufferedReader(new FileReader("src\\main\\resources\\events.csv"));
-            CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT
-                    .withFirstRecordAsHeader()
-                    .withIgnoreHeaderCase()
-                    .withTrim());
-        ) {
-            for (CSVRecord csvRecord : csvParser) {
-               rows = rows.append(List.of(csvRecord.get("name"), csvRecord.get("date")));
-
-            }
-        }
-      return rows;
-    
-  }
 
   private String tag(String string, String result) {
     return tagAsHtml(string, result);
