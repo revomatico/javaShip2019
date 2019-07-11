@@ -19,7 +19,6 @@ import com.revomatico.internship2019.demo1.readers.StefanEventsReader;
 public class HomeController {
   @RequestMapping("/")
   public String home() throws Exception {
-
     return displayEvents(new SimoEventsReader().readEvents());
   }
 
