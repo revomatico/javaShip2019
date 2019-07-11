@@ -1,4 +1,4 @@
-package com.revomatico.internship2019.demo1.controller;
+package com.revomatico.internship2019.demo1.readers;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -7,8 +7,9 @@ import com.opencsv.CSVReader;
 
 import io.vavr.collection.List;
 
-public class MyReading {
+public class SimoEventsReader implements EventsReader{
 
+  @Override
 	public List<List<String>> readEvents(){
 
 		CSVReader reader = null;

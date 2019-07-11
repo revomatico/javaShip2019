@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revomatico.internship2019.demo1.readers.CsvParser;
 import com.revomatico.internship2019.demo1.readers.DanutzEventsReader;
 import com.revomatico.internship2019.demo1.readers.EventsReader;
+import com.revomatico.internship2019.demo1.readers.SimoEventsReader;
 
 @RestController
 public class HomeController {
   @RequestMapping("/")
   public String home() throws Exception {
-	  
-    return displayEvents(new MyReading().readEvents());
+
+    return displayEvents(new SimoEventsReader().readEvents());
   }
 
   private String displayEvents(List<List<String>> rows) {
@@ -28,8 +29,10 @@ public class HomeController {
   }
 
   private List<List<String>> readEvents() throws FileNotFoundException {
-    EventsReader eventReader = new DanutzEventsReader();
-    // new ManualEventsReader();
+    EventsReader eventReader =
+        // new DanutzEventsReader();
+        // new ManualEventsReader();
+        new SimoEventsReader();
     return eventReader.readEvents();
   }
 
