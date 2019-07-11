@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 import io.vavr.collection.List;
 
 public class CsvParser {
@@ -50,5 +51,10 @@ public class CsvParser {
             return rows;
         }
         
+    }
+
+    public static void writeCsv(List<List<String>> events) {
+    //      CSVWriter csv = new CSVWriter(reader);
+      throw new RuntimeException("Not implemented yet!!!");
     }
 }

@@ -17,4 +17,10 @@ public class DanutzEventsReader implements EventsReader {
     return rows;
   }
 
+  @Override
+  public void addEvent(Event event) {
+    List<List<String>> events = readEvents();
+    events = events.append(List.of(event.name,event.date));
+    CsvParser.writeCsv(events);
+  }
 }

@@ -4,4 +4,7 @@ import io.vavr.collection.List;
 
 public interface EventsReader {
   List<List<String>> readEvents();
+
+  default void addEvent(Event event) {
+  }
 }
