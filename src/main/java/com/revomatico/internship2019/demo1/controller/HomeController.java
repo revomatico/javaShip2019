@@ -13,6 +13,7 @@ import com.revomatico.internship2019.demo1.readers.CsvParser;
 import com.revomatico.internship2019.demo1.readers.DanutzEventsReader;
 import com.revomatico.internship2019.demo1.readers.EventsReader;
 import com.revomatico.internship2019.demo1.readers.SimoEventsReader;
+import com.revomatico.internship2019.demo1.readers.StefanEventsReader;
 
 @RestController
 public class HomeController {
@@ -32,7 +33,8 @@ public class HomeController {
     EventsReader eventReader =
         // new DanutzEventsReader();
         // new ManualEventsReader();
-        new SimoEventsReader();
+        // new SimoEventsReader();
+        new StefanEventsReader();
     return eventReader.readEvents();
   }
 
