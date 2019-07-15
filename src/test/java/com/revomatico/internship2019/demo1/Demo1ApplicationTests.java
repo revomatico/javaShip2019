@@ -17,10 +17,10 @@ class Demo1ApplicationTests {
     allEventsAreRead(new SimoEventsReader());
   }
 
-  @Test
-  void allEventsAreReadFromFileStefan() {
-    allEventsAreRead(new StefanEventsReader());
-  }
+//  @Test
+//  void allEventsAreReadFromFileStefan() {
+//    allEventsAreRead(new StefanEventsReader());
+//  }
 
   @Test
   void allEventsAreReadFromFileDanutz() {
@@ -36,15 +36,16 @@ class Demo1ApplicationTests {
 
   @Test
   void addEventsWorksByWritingInFile() {
-    EventsReader reader = new DanutzEventsReader();
+    EventsReader reader = new SimoEventsReader();
     int events = reader.readEvents().size();
+    System.out.println(events);
     reader.addEvent(new Event("concert", "2020"));
     assertEquals(events + 1, reader.readEvents().size());
   }
 
   @Test
   void addEventsToRepository() {
-    EventsRepository repository = new EventsRepository(new DanutzEventsReader());
+    EventsRepository repository = new EventsRepository(new SimoEventsReader());
     int events = repository.readEvents().size();
     repository.addEvent(new Event("concert", "2020"));
     assertEquals(events + 1, repository.readEvents().size());

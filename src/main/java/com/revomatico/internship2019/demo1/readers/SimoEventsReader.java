@@ -18,6 +18,11 @@ public class SimoEventsReader implements EventsReader {
 
       String[] nextLine;
       // Read one line at a time
+      nextLine = reader.readNext();
+      
+      if(!nextLine[0].matches("name")&& !nextLine[1].matches("date")) {
+    	  rows = rows.append(List.of(nextLine[0], nextLine[1]));
+      }
       while ((nextLine = reader.readNext()) != null) {
         rows = rows.append(List.of(nextLine[0], nextLine[1]));
       }
@@ -27,5 +32,12 @@ public class SimoEventsReader implements EventsReader {
       throw new WrappedException(e);
     }
     return rows;
+  }
+  
+  @Override
+  public void addEvent(Event event) {
+    List<List<String>> events = readEvents();
+    events = events.append(List.of(event.name,event.date));
+    CsvParser.writeCsv(events);
   }
 }

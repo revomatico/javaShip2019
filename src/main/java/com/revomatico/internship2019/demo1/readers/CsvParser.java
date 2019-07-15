@@ -1,5 +1,7 @@
 package com.revomatico.internship2019.demo1.readers;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -55,6 +57,38 @@ public class CsvParser {
 
     public static void writeCsv(List<List<String>> events) {
     //      CSVWriter csv = new CSVWriter(reader);
-      throw new RuntimeException("Not implemented yet!!!");
-    }
+    	    // first create file object for file placed at location 
+    	    // specified by filepath 
+    	    File file = new File(Path); 
+    	    try { 
+    	        // create FileWriter object with file as parameter 
+    	        FileWriter outputfile = new FileWriter(Path); 
+    	  
+    	        // create CSVWriter object filewriter object as parameter 
+    	        CSVWriter writer = new CSVWriter(outputfile); 
+    	  
+    	        // add data to csv
+    	        
+    	        int aux = events.size();
+    	        int i = 0;
+    	        String[] data1 = new String[2];
+    	        while(i < aux ) {
+    	        	data1[0] = events.get(i).get(0);
+        	        data1[1] = events.get(i).get(1);
+        	        writer.writeNext(data1);
+    	        	i++;
+    	        }
+    	        
+    	     
+    	        
+
+    	  
+    	        // closing writer connection 
+    	        writer.close(); 
+    	    } 
+    	    catch (IOException e) { 
+    	        // TODO Auto-generated catch block 
+    	        e.printStackTrace(); 
+    	    } 
+    	} 
 }
