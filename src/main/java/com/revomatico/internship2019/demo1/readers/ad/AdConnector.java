@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 
-import com.revomatico.internship2019.demo1.readers.EventsReader;
+import com.revomatico.internship2019.demo1.readers.EventsConnector;
 import io.vavr.collection.List;
 import net.tirasa.connid.bundles.ad.ADConfiguration;
 import net.tirasa.connid.bundles.ad.ADConnector;
@@ -25,7 +25,7 @@ import org.identityconnectors.test.common.TestHelpers;
 import org.identityconnectors.test.common.ToListResultsHandler;
 import org.springframework.boot.ApplicationArguments;
 
-public class AdConnector implements EventsReader {
+public class AdConnector implements EventsConnector {
   private static final ADConfiguration config = createConfig("OU=Roweb,DC=example,DC=com", "WIN-0IO1D0UTKLH.example.com", 389,
       "<password>", "CN=midPoint Admin,CN=Users,DC=example,DC=com", false);
 

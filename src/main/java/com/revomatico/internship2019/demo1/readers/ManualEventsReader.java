@@ -7,7 +7,7 @@ import java.util.Scanner;
 import com.revomatico.internship2019.demo1.controller.WrappedException;
 import io.vavr.collection.List;
 
-public class ManualEventsReader implements EventsReader {
+public class ManualEventsReader implements EventsConnector {
 
   @Override
   public List<List<String>> readEvents() {

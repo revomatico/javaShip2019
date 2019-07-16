@@ -8,7 +8,7 @@ import com.opencsv.CSVReader;
 import com.revomatico.internship2019.demo1.controller.WrappedException;
 import io.vavr.collection.List;
 
-public class SimoEventsReader implements EventsReader {
+public class SimoEventsReader implements EventsConnector {
   private String path;
 
   public SimoEventsReader(String path) {

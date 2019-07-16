@@ -3,27 +3,41 @@ package com.revomatico.internship2019.demo1.controller;
 import java.io.FileNotFoundException;
 import java.time.ZonedDateTime;
 
+import javax.annotation.PostConstruct;
+
+import com.google.common.base.Preconditions;
 import com.revomatico.internship2019.demo1.readers.DanutzEventsReader;
 import com.revomatico.internship2019.demo1.readers.Event;
+import com.revomatico.internship2019.demo1.readers.EventsConnector;
 import com.revomatico.internship2019.demo1.readers.EventsRepository;
 import com.revomatico.internship2019.demo1.readers.SimoEventsReader;
 import io.vavr.collection.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HomeController {
-  EventsRepository repo = new EventsRepository(
-      // new AdConnector()
-      // new LdapConnector()
-      new DanutzEventsReader("events-webapp.csv")
-  // new LdapConnector()
-  // new DanutzEventsReader();
-  // new ManualEventsReader();
-  // new SimoEventsReader()
-  // new StefanEventsReader();
-  );
+  @Autowired
+  private EventsConnector databaseController;
+  private EventsRepository repo;
+
+  @PostConstruct
+  public void init() {
+    Preconditions.checkNotNull(databaseController);
+    repo = new EventsRepository(
+        // new AdConnector()
+        // new LdapConnector()
+        // new DanutzEventsReader("events-webapp.csv")
+        databaseController
+    // new LdapConnector()
+    // new DanutzEventsReader();
+    // new ManualEventsReader();
+    // new SimoEventsReader()
+    // new StefanEventsReader();
+    );
+  }
 
   @RequestMapping("/")
   public String home() throws Exception {

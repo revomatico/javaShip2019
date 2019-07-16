@@ -2,7 +2,7 @@ package com.revomatico.internship2019.demo1;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.revomatico.internship2019.demo1.readers.EventsReader;
+import com.revomatico.internship2019.demo1.readers.EventsConnector;
 import com.revomatico.internship2019.demo1.readers.ad.AdConnector;
 import com.revomatico.internship2019.demo1.readers.ad.LdapConnector;
 import io.vavr.collection.List;
@@ -15,7 +15,7 @@ public class LdapAndAdConnectorTest {
   @Disabled
   @Tag("integration")
   void adConnectorTest() {
-    EventsReader connector = new AdConnector();
+    EventsConnector connector = new AdConnector();
     final List<List<String>> events = connector.readEvents();
     System.out.println(events.map(x->x.mkString("\n  - ")).mkString("\n"));
     assertEquals(176,events.size());
@@ -24,7 +24,7 @@ public class LdapAndAdConnectorTest {
   @Disabled
   @Tag("integration")
   void ldapConnectorTest() {
-    EventsReader connector = new LdapConnector();
+    EventsConnector connector = new LdapConnector();
     final List<List<String>> events = connector.readEvents();
     System.out.println(events.map(x->x.mkString("\n  - ")).mkString("\n"));
     assertEquals(1,events.size());

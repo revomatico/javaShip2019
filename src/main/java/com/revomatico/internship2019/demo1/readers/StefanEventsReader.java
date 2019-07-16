@@ -10,7 +10,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-public class StefanEventsReader implements EventsReader {
+public class StefanEventsReader implements EventsConnector {
 
   public List<List<String>> readEvents() {
     List<List<String>> rows = List.empty();

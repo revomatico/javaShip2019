@@ -1,6 +1,6 @@
 package com.revomatico.internship2019.demo1.readers.ad;
 
-import com.revomatico.internship2019.demo1.readers.EventsReader;
+import com.revomatico.internship2019.demo1.readers.EventsConnector;
 import io.vavr.collection.List;
 import net.tirasa.connid.bundles.ldap.LdapConfiguration;
 import net.tirasa.connid.bundles.ldap.LdapConnection;
@@ -13,7 +13,7 @@ import org.identityconnectors.framework.common.objects.ObjectClass;
 import org.identityconnectors.framework.common.objects.OperationOptionsBuilder;
 import org.identityconnectors.test.common.ToListResultsHandler;
 
-public class LdapConnector implements EventsReader {
+public class LdapConnector implements EventsConnector {
   private static final LdapConfiguration config = createConfig("dc=revomatico,dc=com", "172.16.201.3", 389, "<password>",
       "cn=admin,dc=revomatico,dc=com", false);
 

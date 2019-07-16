@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import com.revomatico.internship2019.demo1.readers.DanutzEventsReader;
 import com.revomatico.internship2019.demo1.readers.Event;
-import com.revomatico.internship2019.demo1.readers.EventsReader;
+import com.revomatico.internship2019.demo1.readers.EventsConnector;
 import com.revomatico.internship2019.demo1.readers.EventsRepository;
 import com.revomatico.internship2019.demo1.readers.SimoEventsReader;
 import org.apache.commons.io.FileUtils;
@@ -28,7 +28,7 @@ class Demo1ApplicationTests {
     allEventsAreRead(new DanutzEventsReader(TARGET_EVENTS_CSV));
   }
   
-  private void allEventsAreRead(EventsReader reader) {
+  private void allEventsAreRead(EventsConnector reader) {
     resetTestBeforeWrite();
     assertEquals(8, reader.readEvents().size());
     assertEquals(
@@ -42,7 +42,7 @@ class Demo1ApplicationTests {
   @Test
   void addEventsWorksByWritingInFile() {
     resetTestBeforeWrite();
-    EventsReader reader = new DanutzEventsReader(TARGET_EVENTS_CSV);
+    EventsConnector reader = new DanutzEventsReader(TARGET_EVENTS_CSV);
     int events = reader.readEvents().size();
     assertEquals(8, reader.readEvents().size());
     reader.addEvent(new Event("concert", "2020"));
@@ -69,7 +69,7 @@ class Demo1ApplicationTests {
   }
 
 
-  private void test1(EventsReader eventsReader) {
+  private void test1(EventsConnector eventsReader) {
     resetTestBeforeWrite();
     EventsRepository repository = new EventsRepository(eventsReader);
     assertEquals(8, repository.readEvents().size());

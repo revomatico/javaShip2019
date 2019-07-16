@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import io.vavr.collection.List;
 
-public class DanutzEventsReader implements EventsReader {
+public class DanutzEventsReader implements EventsConnector {
   private String path;
 
   public DanutzEventsReader(String path) {
