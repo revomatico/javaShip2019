@@ -16,15 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
   EventsRepository repo = new EventsRepository(
       // new AdConnector()
-<<<<<<< HEAD
       // new LdapConnector()
-       new DanutzEventsReader()
-=======
-      // new LdapConnector() 
-      // new DanutzEventsReader();
->>>>>>> cc2f5873663d2b67de728544a4fdaec8260e6fe4
-      // new ManualEventsReader();
-      //new SimoEventsReader()
+      new DanutzEventsReader()
+  // new LdapConnector()
+  // new DanutzEventsReader();
+  // new ManualEventsReader();
+  // new SimoEventsReader()
   // new StefanEventsReader();
   );
 
