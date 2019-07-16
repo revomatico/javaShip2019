@@ -17,7 +17,7 @@ public class HomeController {
   EventsRepository repo = new EventsRepository(
       // new AdConnector()
       // new LdapConnector()
-      new DanutzEventsReader()
+      new DanutzEventsReader("events-webapp.csv")
   // new LdapConnector()
   // new DanutzEventsReader();
   // new ManualEventsReader();

@@ -2,43 +2,49 @@ package com.revomatico.internship2019.demo1;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import com.revomatico.internship2019.demo1.readers.DanutzEventsReader;
 import com.revomatico.internship2019.demo1.readers.Event;
 import com.revomatico.internship2019.demo1.readers.EventsReader;
 import com.revomatico.internship2019.demo1.readers.EventsRepository;
 import com.revomatico.internship2019.demo1.readers.SimoEventsReader;
-import com.revomatico.internship2019.demo1.readers.StefanEventsReader;
+import org.apache.commons.io.FileUtils;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class Demo1ApplicationTests {
 
+  private static final String TARGET_EVENTS_CSV = "target//events.csv";
+
   @Test
   void allEventsAreReadFromFileSimo() {
-    allEventsAreRead(new SimoEventsReader());
+    allEventsAreRead(new SimoEventsReader(TARGET_EVENTS_CSV));
   }
-
-//  @Test
-//  void allEventsAreReadFromFileStefan() {
-//    allEventsAreRead(new StefanEventsReader());
-//  }
 
   @Test
   void allEventsAreReadFromFileDanutz() {
-    allEventsAreRead(new DanutzEventsReader());
+    allEventsAreRead(new DanutzEventsReader(TARGET_EVENTS_CSV));
   }
-
+  
   private void allEventsAreRead(EventsReader reader) {
-    assertEquals(6, reader.readEvents().size());
+    resetTestBeforeWrite();
+    assertEquals(8, reader.readEvents().size());
     assertEquals(
-        "List(List(concert rock 1, 2019-07-09 18:00), List(concert rock 2, 2019-07-09 18:00), List(concert,,, pop,,, 3, 2019-07-09 18:00), List(concert\",,roc\"\"k 4, 2019-07-09 19:00), List(concert rock 5, 2019-07-09 18:00), List(concert,roc\"k 4, 2019-07-09 18:00))",
-        reader.readEvents().toString());
+        "List(concert rock 1, 2019-07-09 18:00)",
+        reader.readEvents().head().toString());
+    assertEquals(
+        "List(a, b)",
+        reader.readEvents().last().toString());
   }
 
   @Test
   void addEventsWorksByWritingInFile() {
     resetTestBeforeWrite();
-    EventsReader reader = new DanutzEventsReader();
+    EventsReader reader = new DanutzEventsReader(TARGET_EVENTS_CSV);
     int events = reader.readEvents().size();
+    assertEquals(8, reader.readEvents().size());
     reader.addEvent(new Event("concert", "2020"));
     assertEquals(events + 1, reader.readEvents().size());
   }
@@ -46,28 +52,35 @@ class Demo1ApplicationTests {
   @Test
   void addEventsToRepository() {
     resetTestBeforeWrite();
-    EventsRepository repository = new EventsRepository(new SimoEventsReader());
+    EventsRepository repository = new EventsRepository(new SimoEventsReader(TARGET_EVENTS_CSV));
     int events = repository.readEvents().size();
     repository.addEvent(new Event("concert", "2020"));
     assertEquals(events + 1, repository.readEvents().size());
   }
 
-  private void resetTestBeforeWrite() {
-    throw new RuntimeException("Not implemented yet!!!");
-  }
-
   @Test
   void initiallyReadEventsInRepositoryFromFile() {
-    test1(new DanutzEventsReader());
+    test1(new DanutzEventsReader(TARGET_EVENTS_CSV));
   }
 
   @Test
   void initiallyReadEventsInRepositoryFromFile2() {
-    test1(new SimoEventsReader());
+    test1(new SimoEventsReader(TARGET_EVENTS_CSV));
   }
 
+
   private void test1(EventsReader eventsReader) {
+    resetTestBeforeWrite();
     EventsRepository repository = new EventsRepository(eventsReader);
     assertEquals(8, repository.readEvents().size());
+  }
+  
+
+  private void resetTestBeforeWrite() {
+    try {
+      FileUtils.copyFile(new File("src/main/resources/events.csv"), new File(TARGET_EVENTS_CSV));
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 }

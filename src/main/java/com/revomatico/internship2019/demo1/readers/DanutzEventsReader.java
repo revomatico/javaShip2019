@@ -5,14 +5,18 @@ import java.io.IOException;
 import io.vavr.collection.List;
 
 public class DanutzEventsReader implements EventsReader {
+  private String path;
+
+  public DanutzEventsReader(String path) {
+    this.path = path;
+  }
 
   public List<List<String>> readEvents() {
     List<List<String>> rows = List.empty();
     try {
-      rows = CsvParser.ReadCsv();
-
+      rows = new CsvParser(path).readCsv();
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
     return rows;
   }
@@ -21,6 +25,6 @@ public class DanutzEventsReader implements EventsReader {
   public void addEvent(Event event) {
     List<List<String>> events = readEvents();
     events = events.append(List.of(event.name,event.date));
-    CsvParser.writeCsv(events);
+    new CsvParser(path).writeCsv(events);
   }
 }

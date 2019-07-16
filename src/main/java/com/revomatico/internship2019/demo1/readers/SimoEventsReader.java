@@ -9,11 +9,15 @@ import com.revomatico.internship2019.demo1.controller.WrappedException;
 import io.vavr.collection.List;
 
 public class SimoEventsReader implements EventsReader {
+  private String path;
 
+  public SimoEventsReader(String path) {
+    this.path = path;
+  }
   @Override
   public List<List<String>> readEvents() {
     List<List<String>> rows = List.empty();
-    try (CSVReader reader = new CSVReader(new FileReader("src\\main\\resources\\events.csv"), ',');) {
+    try (CSVReader reader = new CSVReader(new FileReader(path), ',');) {
       // Get the CSVReader instance with specifying the delimiter to be used
 
       String[] nextLine;
@@ -38,6 +42,6 @@ public class SimoEventsReader implements EventsReader {
   public void addEvent(Event event) {
     List<List<String>> events = readEvents();
     events = events.append(List.of(event.name,event.date));
-    CsvParser.writeCsv(events);
+    new CsvParser(path).writeCsv(events);
   }
 }

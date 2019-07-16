@@ -14,7 +14,10 @@ import com.opencsv.CSVWriter;
 import io.vavr.collection.List;
 
 public class CsvParser {
-    private static final String Path = "src\\main\\resources\\events.csv";
+    private final String path;
+    public CsvParser(String path){
+      this.path = path;
+    }
     
     public static Map<String,String> initRestrictedKeywords(){
     	Map<String,String> restrictedKeywords = new HashMap<>();
@@ -36,12 +39,12 @@ public class CsvParser {
     }
     
 
-    public static List<List<String>> ReadCsv() throws IOException {
+    public List<List<String>> readCsv() throws IOException {
     	List<List<String>> rows = List.empty();
     	Map<String,String> restrictedKeywords = initRestrictedKeywords();
        
         try (
-            Reader reader = Files.newBufferedReader(Paths.get(Path));
+            Reader reader = Files.newBufferedReader(Paths.get(path));
             CSVReader csvReader = new CSVReader(reader);
         ) {
             String[] nextRecord = csvReader.readNext();
@@ -59,14 +62,14 @@ public class CsvParser {
         
     }
 
-    public static void writeCsv(List<List<String>> events) {
+    public void writeCsv(List<List<String>> events) {
     //      CSVWriter csv = new CSVWriter(reader);
     	    // first create file object for file placed at location 
     	    // specified by filepath 
-    	    File file = new File(Path); 
+    	    File file = new File(path); 
     	    try { 
     	        // create FileWriter object with file as parameter 
-    	        FileWriter outputfile = new FileWriter(Path); 
+    	        FileWriter outputfile = new FileWriter(path); 
     	  
     	        // create CSVWriter object filewriter object as parameter 
     	        CSVWriter writer = new CSVWriter(outputfile); 
