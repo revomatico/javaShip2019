@@ -3,6 +3,7 @@ package com.revomatico.internship2019.demo1.controller;
 import java.io.FileNotFoundException;
 import java.time.ZonedDateTime;
 
+import com.revomatico.internship2019.demo1.readers.DanutzEventsReader;
 import com.revomatico.internship2019.demo1.readers.Event;
 import com.revomatico.internship2019.demo1.readers.EventsRepository;
 import com.revomatico.internship2019.demo1.readers.SimoEventsReader;
@@ -16,9 +17,9 @@ public class HomeController {
   EventsRepository repo = new EventsRepository(
       // new AdConnector()
       // new LdapConnector()
-      // new DanutzEventsReader();
+       new DanutzEventsReader()
       // new ManualEventsReader();
-      new SimoEventsReader()
+      //new SimoEventsReader()
   // new StefanEventsReader();
   );
 

@@ -43,8 +43,12 @@ public class CsvParser {
         try (
             Reader reader = Files.newBufferedReader(Paths.get(Path));
             CSVReader csvReader = new CSVReader(reader);
-        ) {csvReader.readNext();
-            String[] nextRecord;
+        ) {
+            String[] nextRecord = csvReader.readNext();
+            if(!nextRecord[0].matches("name") && !nextRecord[1].matches("date")) {
+            	String firstRecord = filterKeyWord(nextRecord[0],restrictedKeywords);
+                rows = rows.append(List.of(firstRecord, nextRecord[1]));
+            }
             while ((nextRecord = csvReader.readNext()) != null) {
                 String firstRecord = filterKeyWord(nextRecord[0],restrictedKeywords);
                 rows = rows.append(List.of(firstRecord, nextRecord[1]));
@@ -78,11 +82,7 @@ public class CsvParser {
         	        writer.writeNext(data1);
     	        	i++;
     	        }
-    	        
-    	     
-    	        
 
-    	  
     	        // closing writer connection 
     	        writer.close(); 
     	    } 

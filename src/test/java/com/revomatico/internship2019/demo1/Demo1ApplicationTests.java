@@ -36,9 +36,8 @@ class Demo1ApplicationTests {
 
   @Test
   void addEventsWorksByWritingInFile() {
-    EventsReader reader = new SimoEventsReader();
+    EventsReader reader = new DanutzEventsReader();
     int events = reader.readEvents().size();
-    System.out.println(events);
     reader.addEvent(new Event("concert", "2020"));
     assertEquals(events + 1, reader.readEvents().size());
   }
