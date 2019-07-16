@@ -36,6 +36,7 @@ class Demo1ApplicationTests {
 
   @Test
   void addEventsWorksByWritingInFile() {
+    resetTestBeforeWrite();
     EventsReader reader = new DanutzEventsReader();
     int events = reader.readEvents().size();
     reader.addEvent(new Event("concert", "2020"));
@@ -44,10 +45,15 @@ class Demo1ApplicationTests {
 
   @Test
   void addEventsToRepository() {
+    resetTestBeforeWrite();
     EventsRepository repository = new EventsRepository(new SimoEventsReader());
     int events = repository.readEvents().size();
     repository.addEvent(new Event("concert", "2020"));
     assertEquals(events + 1, repository.readEvents().size());
+  }
+
+  private void resetTestBeforeWrite() {
+    throw new RuntimeException("Not implemented yet!!!");
   }
 
   @Test
@@ -62,6 +68,6 @@ class Demo1ApplicationTests {
 
   private void test1(EventsReader eventsReader) {
     EventsRepository repository = new EventsRepository(eventsReader);
-    assertEquals(6, repository.readEvents().size());
+    assertEquals(8, repository.readEvents().size());
   }
 }

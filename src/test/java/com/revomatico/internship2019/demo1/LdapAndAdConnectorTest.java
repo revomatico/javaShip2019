@@ -6,11 +6,13 @@ import com.revomatico.internship2019.demo1.readers.EventsReader;
 import com.revomatico.internship2019.demo1.readers.ad.AdConnector;
 import com.revomatico.internship2019.demo1.readers.ad.LdapConnector;
 import io.vavr.collection.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class LdapAndAdConnectorTest {
   @Test
+  @Disabled
   @Tag("integration")
   void adConnectorTest() {
     EventsReader connector = new AdConnector();
@@ -19,6 +21,7 @@ public class LdapAndAdConnectorTest {
     assertEquals(176,events.size());
   }
   @Test
+  @Disabled
   @Tag("integration")
   void ldapConnectorTest() {
     EventsReader connector = new LdapConnector();
