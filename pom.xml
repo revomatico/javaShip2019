@@ -181,11 +181,19 @@
       <url>https://repo.spring.io/milestone</url>
     </repository>
     <repository>
+<<<<<<< HEAD
   <id>raisercostin-bintray</id>
   <url>https://dl.bintray.com/raisercostin/maven</url>
   <releases><enabled>true</enabled></releases>
   <snapshots><enabled>false</enabled></snapshots>
 </repository>
+=======
+  		<id>raisercostin-bintray</id>
+  		<url>https://dl.bintray.com/raisercostin/maven</url>
+  		<releases><enabled>true</enabled></releases>
+  		<snapshots><enabled>false</enabled></snapshots>
+	</repository>
+>>>>>>> 552cd05ddf05a548f0acfc1d1f31e7d258624599
   </repositories>
   <pluginRepositories>
     <pluginRepository>
