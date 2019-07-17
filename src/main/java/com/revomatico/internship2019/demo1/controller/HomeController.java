@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.revomatico.internship2019.demo1.readers.JsonParser;
+import com.revomatico.internship2019.demo1.readers.DanutzJsonReader;
 
 @RestController
 public class HomeController {
@@ -23,19 +25,21 @@ public class HomeController {
   private EventsConnector databaseController;
   private EventsRepository repo;
 
+  
   @PostConstruct
   public void init() {
     Preconditions.checkNotNull(databaseController);
+
     repo = new EventsRepository(
         // new AdConnector()
         // new LdapConnector()
-        // new DanutzEventsReader("events-webapp.csv")
-        databaseController
+        new DanutzJsonReader("https://danutz99.github.io/json/db.json")
     // new LdapConnector()
-    // new DanutzEventsReader();
+    // new DanutzEventsReader("web-app.csv");
     // new ManualEventsReader();
     // new SimoEventsReader()
     // new StefanEventsReader();
+    		
     );
   }
 

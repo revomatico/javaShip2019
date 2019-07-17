@@ -14,7 +14,7 @@ public class EventsRepository {
     events = eventsReader.readEvents().map(x/* :List<String> */ -> new Event(x.get(0), x.get(1), x));
   }
 
-  public List<Event> readEvents() {
+public List<Event> readEvents() {
     return events;
   }
 

@@ -18,7 +18,7 @@ public class DatabaseConnector implements EventsConnector {
 
   @PostConstruct
   public void init() {
-    repo.saveAll(List.of(new Event("concert1", "data1"), new Event("concert2", "data2")));
+    repo.saveAll(List.of(new Event("concert_strauss", "data1"), new Event("concert2", "data2")));
   }
 
   @Override
