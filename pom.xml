@@ -192,6 +192,12 @@
       <name>Spring Milestones</name>
       <url>https://repo.spring.io/milestone</url>
     </repository>
+    <repository>
+  		<id>raisercostin-bintray</id>
+  		<url>https://dl.bintray.com/raisercostin/maven</url>
+  		<releases><enabled>true</enabled></releases>
+  		<snapshots><enabled>false</enabled></snapshots>
+	</repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
