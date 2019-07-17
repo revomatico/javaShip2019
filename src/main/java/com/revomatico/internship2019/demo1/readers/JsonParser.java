@@ -15,13 +15,10 @@ public JsonParser(String path) {
 }
 	public List<List<String>> readJsonEvents() {
 		List<List<String>> rows=List.empty();
-	     //String url = "https://api.myjson.com/bins/c5lyl";
 	     try {
 		     URL obj = new URL(path);
 		     HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-		     // optional default is GET
 		     con.setRequestMethod("GET");
-		     //add request header
 		     con.setRequestProperty("User-Agent", "Mozilla/5.0");
 		     int responseCode = con.getResponseCode();
 		     BufferedReader in = new BufferedReader(
