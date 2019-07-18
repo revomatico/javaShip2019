@@ -13,8 +13,11 @@ import org.springframework.stereotype.Repository;
 
 @Component
 public class DatabaseConnector implements EventsConnector {
-  @Autowired
-  EventRepository repo;
+  private EventRepository repo;
+
+  public DatabaseConnector(@Autowired EventRepository repo) {
+    this.repo = repo;
+  }
 
   @PostConstruct
   public void init() {

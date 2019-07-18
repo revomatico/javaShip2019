@@ -40,12 +40,12 @@ public class HomeController {
   }
 
   @RequestMapping("/")
-  public String home() throws Exception {
+  public String home() {
     return displayEvents(readEvents());
   }
 
   @RequestMapping("/add")
-  public String add(@RequestParam String name) throws Exception {
+  public String add(@RequestParam String name) {
     repo.addEvent(new Event(name, ZonedDateTime.now().toString()));
     return home();
   }
@@ -56,7 +56,7 @@ public class HomeController {
     return style + "Events:<br/>" + table;
   }
 
-  private List<List<String>> readEvents() throws FileNotFoundException {
+  private List<List<String>> readEvents() {
     return repo.readEvents().map(x/* :Event */ -> x.details/* List.of(x.name, x.date).appendAll(x.details) */);
   }
 
