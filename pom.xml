@@ -22,17 +22,21 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.7.5</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
-      <version>1.6.4</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-logging</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -130,14 +134,14 @@
       <version>0.8.8</version>
     </dependency>
     <dependency>
-  <groupId>com.google.guava</groupId>
-  <artifactId>guava</artifactId>
-  <version>11.0.2</version>
-</dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>11.0.2</version>
+    </dependency>
     <dependency>
       <groupId>org.raisercostin</groupId>
       <artifactId>jedio</artifactId>
-      <version>0.17</version>  
+      <version>0.17</version>
       <exclusions>
         <exclusion>
           <groupId>ch.qos.logback</groupId>
@@ -148,8 +152,8 @@
           <artifactId>logback-core</artifactId>
         </exclusion>
       </exclusions>
-      </dependency>
-         <!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-oauth2-client</artifactId> </dependency> -->
+    </dependency>
+    <!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-oauth2-client</artifactId> </dependency> -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
@@ -211,12 +215,16 @@
       <url>https://repo.spring.io/milestone</url>
     </repository>
     <repository>
-  <id>raisercostin-bintray</id>
-  <url>https://dl.bintray.com/raisercostin/maven</url>
-  <releases><enabled>true</enabled></releases>
-  <snapshots><enabled>false</enabled></snapshots>
-</repository>
-</repositories>
+      <id>raisercostin-bintray</id>
+      <url>https://dl.bintray.com/raisercostin/maven</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
   <pluginRepositories>
     <pluginRepository>
       <id>spring-snapshots</id>

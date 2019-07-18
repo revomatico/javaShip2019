@@ -31,9 +31,10 @@ public class HomeController {
     Preconditions.checkNotNull(databaseController);
 
     repo = new EventsRepository(
+        databaseController
         // new AdConnector()
         // new LdapConnector()
-        new DanutzJsonReader("https://danutz99.github.io/json/db.json")
+        //new DanutzJsonReader("https://danutz99.github.io/json/db.json")
     // new LdapConnector()
     // new DanutzEventsReader("web-app.csv");
     // new ManualEventsReader();

@@ -34,6 +34,6 @@ public class HomeControllerTest {
   @Test
   void addEventsToRepository() {
     assertNotNull(controller);
-    assertEquals("<link rel=\"stylesheet\" href=\"//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css\">Events:<br/><table><tr><th>name</th><th>date</th></tr><tr><td>concert1</td><td>data1</td></tr><tr><td>concert2</td><td>data2</td></tr></table>",controller.home());
+    assertEquals("<link rel=\"stylesheet\" href=\"//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css\">Events:<br/><table><tr><th>name</th><th>date</th></tr><tr><td>concert_strauss</td><td>data1</td></tr><tr><td>concert2</td><td>data2</td></tr></table>",controller.home());
   }
 }
