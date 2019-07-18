@@ -21,14 +21,15 @@ public class DatabaseConnector implements EventsConnector {
 
   @PostConstruct
   public void init() {
-    repo.saveAll(List.of(new Event("concert_strauss", "data1"), new Event("concert2", "data2")));
+    List.range(1, 100).forEach(x -> repo.save(new Event("concert_strauss " + x, "data" + x)));
   }
-
+ 
   @Override
   public List<List<String>> readEvents() {
     Iterable<Event> events = repo.findAll();
     return List.of(List.of("name", "date")).appendAll(Iterator.ofAll(events).map(x -> List.of(x.name, x.date))).toList();
   }
+
   @Override
   public void addEvent(Event event) {
     repo.save(event);

@@ -47,6 +47,11 @@ public class HomeController {
     return displayEvents(readEvents());
   }
 
+  @RequestMapping("/events.json")
+  public java.util.List<java.util.List<String>> returnAsJson() {
+    return readEvents().map(x->x.toJavaList()).toJavaList();
+  }
+
   @RequestMapping("/add")
   public String add(@RequestParam String name) {
     System.out.println("add "+name);
