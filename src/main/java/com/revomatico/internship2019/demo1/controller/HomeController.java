@@ -25,22 +25,20 @@ public class HomeController {
   private EventsConnector databaseController;
   private EventsRepository repo;
 
-  
   @PostConstruct
   public void init() {
     Preconditions.checkNotNull(databaseController);
 
-    repo = new EventsRepository(
-        databaseController
-        // new AdConnector()
-        // new LdapConnector()
-        //new DanutzJsonReader("https://danutz99.github.io/json/db.json")
+    repo = new EventsRepository(databaseController
+    // new AdConnector()
+    // new LdapConnector()
+    // new DanutzJsonReader("https://danutz99.github.io/json/db.json")
     // new LdapConnector()
     // new DanutzEventsReader("web-app.csv");
     // new ManualEventsReader();
     // new SimoEventsReader()
     // new StefanEventsReader();
-    		
+
     );
   }
 
@@ -51,6 +49,7 @@ public class HomeController {
 
   @RequestMapping("/add")
   public String add(@RequestParam String name) {
+    System.out.println("add "+name);
     repo.addEvent(new Event(name, ZonedDateTime.now().toString()));
     return home();
   }

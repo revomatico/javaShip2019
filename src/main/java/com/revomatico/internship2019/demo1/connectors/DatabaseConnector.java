@@ -29,5 +29,8 @@ public class DatabaseConnector implements EventsConnector {
     Iterable<Event> events = repo.findAll();
     return List.of(List.of("name", "date")).appendAll(Iterator.ofAll(events).map(x -> List.of(x.name, x.date))).toList();
   }
-
+  @Override
+  public void addEvent(Event event) {
+    repo.save(event);
+  }
 }

@@ -6,20 +6,20 @@ import io.vavr.collection.Traversable;
 
 public class EventsRepository {
   private List<Event> events = List.empty();
-  private EventsConnector eventsReader;
+  private EventsConnector connector;
 
-  public EventsRepository(EventsConnector eventsReader) {
-    Preconditions.checkNotNull(eventsReader);
-    this.eventsReader = eventsReader;
-    events = eventsReader.readEvents().map(x/* :List<String> */ -> new Event(x.get(0), x.get(1), x));
+  public EventsRepository(EventsConnector connector) {
+    Preconditions.checkNotNull(connector);
+    this.connector = connector;
   }
 
-public List<Event> readEvents() {
+  public List<Event> readEvents() {
+    events = connector.readEvents().map(x/* :List<String> */ -> new Event(x.get(0), x.get(1), x));
     return events;
   }
 
   public void addEvent(Event event) {
     events = events.append(event);
-    // eventsReader.addEvent(event);
+    connector.addEvent(event);
   }
 }
