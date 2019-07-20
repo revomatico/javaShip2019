@@ -10,19 +10,21 @@ public class Event {
   @Id
   public final String name;
   public final String date;
+  public final String singer;
   public final List<String> details;
 
-  public Event(String name, String date, List<String> details) {
+  public Event(String name, String date, String singer, List<String> details) {
     this.name = name;
     this.date = date;
+    this.singer = singer;
     this.details = details;
   }
 
-  public Event(String name, String date) {
-    this(name, date, List.empty());
+  public Event(String name, String date, String singer) {
+    this(name, date, singer, List.empty());
   }
 
   private Event() {
-    this(null, null);
+    this(null, null,null);
   }
 }
