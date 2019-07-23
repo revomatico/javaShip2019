@@ -2,6 +2,7 @@ package com.revomatico.internship2019.demo1.controller;
 
 import java.io.FileNotFoundException;
 import java.time.ZonedDateTime;
+import java.util.Random;
 
 import javax.annotation.PostConstruct;
 
@@ -49,12 +50,19 @@ public class HomeController {
 
   @RequestMapping("/events.json")
   public java.util.List<java.util.List<String>> returnAsJson() {
-    return readEvents().map(x->x.toJavaList()).toJavaList();
+    return readEvents().map(x -> x.append("price").append("location").append(randomChoose()).toJavaList()).toJavaList();
+  }
+
+  private String randomChoose() {
+    if (Math.random() > 0.5)
+      return "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg";
+    else
+      return "https://cdn.vuetifyjs.com/images/carousel/sky.jpg";
   }
 
   @RequestMapping("/add")
   public String add(@RequestParam String name) {
-    System.out.println("add "+name);
+    System.out.println("add " + name);
     repo.addEvent(new Event(name, ZonedDateTime.now().toString()));
     return home();
   }
