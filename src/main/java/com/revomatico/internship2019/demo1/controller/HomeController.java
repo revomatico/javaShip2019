@@ -1,24 +1,20 @@
 package com.revomatico.internship2019.demo1.controller;
 
-import java.io.FileNotFoundException;
 import java.time.ZonedDateTime;
 import java.util.Random;
 
 import javax.annotation.PostConstruct;
 
 import com.google.common.base.Preconditions;
-import com.revomatico.internship2019.demo1.readers.DanutzEventsReader;
+//import com.revomatico.internship2019.demo1.readers.DanutzEventsReader;
 import com.revomatico.internship2019.demo1.readers.Event;
 import com.revomatico.internship2019.demo1.readers.EventsConnector;
 import com.revomatico.internship2019.demo1.readers.EventsRepository;
-import com.revomatico.internship2019.demo1.readers.SimoEventsReader;
 import io.vavr.collection.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.revomatico.internship2019.demo1.readers.JsonParser;
-import com.revomatico.internship2019.demo1.readers.DanutzJsonReader;
 
 @RestController
 public class HomeController {
@@ -61,9 +57,9 @@ public class HomeController {
   }
 
   @RequestMapping("/add")
-  public String add(@RequestParam String name) {
+  public String add(@RequestParam String name, String info) {
     System.out.println("add " + name);
-    repo.addEvent(new Event(name, ZonedDateTime.now().toString()));
+    repo.addEvent(new Event(name, ZonedDateTime.now().toString(), info));
     return home();
   }
 
@@ -74,7 +70,7 @@ public class HomeController {
   }
 
   private List<List<String>> readEvents() {
-    return repo.readEvents().map(x/* :Event */ -> x.details/* List.of(x.name, x.date).appendAll(x.details) */);
+    return repo.readEvents().map(x/* :Event */ -> x.details/* List.of(x.name, x.info, x.date).appendAll(x.details) */);
   }
 
   private String tag(String string, String result) {

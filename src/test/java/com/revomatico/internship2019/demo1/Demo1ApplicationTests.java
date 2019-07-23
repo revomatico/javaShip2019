@@ -45,7 +45,7 @@ class Demo1ApplicationTests {
     EventsConnector reader = new DanutzEventsReader(TARGET_EVENTS_CSV);
     int events = reader.readEvents().size();
     assertEquals(8, reader.readEvents().size());
-    reader.addEvent(new Event("concert", "2020"));
+    reader.addEvent(new Event("concert", "2020","info"));
     assertEquals(events + 1, reader.readEvents().size());
   }
 
@@ -54,7 +54,7 @@ class Demo1ApplicationTests {
     resetTestBeforeWrite();
     EventsRepository repository = new EventsRepository(new SimoEventsReader(TARGET_EVENTS_CSV));
     int events = repository.readEvents().size();
-    repository.addEvent(new Event("concert", "2020"));
+    repository.addEvent(new Event("concert", "2020", "info"));
     assertEquals(events + 1, repository.readEvents().size());
   }
 

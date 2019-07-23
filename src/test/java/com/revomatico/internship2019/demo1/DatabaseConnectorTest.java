@@ -35,7 +35,7 @@ public class DatabaseConnectorTest {
     resetTestBeforeWrite();
     EventsConnector repository = new DatabaseConnector(repo);
     int events = repository.readEvents().size();
-    repository.addEvent(new Event("concert", "2020"));
+    repository.addEvent(new Event("concert", "2020", "singer"));
     assertEquals(events + 1, repository.readEvents().size());
   }
 
