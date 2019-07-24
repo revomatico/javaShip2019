@@ -8,6 +8,7 @@ import java.io.IOException;
 import com.google.common.base.Preconditions;
 import com.revomatico.internship2019.demo1.connectors.google.GoogleCalendarEventsConnector;
 import com.revomatico.internship2019.demo1.readers.DanutzEventsReader;
+import com.revomatico.internship2019.demo1.readers.DanutzJsonReader;
 import com.revomatico.internship2019.demo1.readers.Event;
 import com.revomatico.internship2019.demo1.readers.EventsConnector;
 import com.revomatico.internship2019.demo1.readers.EventsRepository;
@@ -21,6 +22,7 @@ class Demo1ApplicationTests {
 	// TODO parametrized tests
 
 	private static final String TARGET_EVENTS_CSV = "target//events.csv";
+	private static final String TARGET_EVENTS_JSON="https://danutz99.github.io/json/db.json";
 
 	@Test
 	void allEventsAreReadFromFileSimo() {
@@ -37,6 +39,11 @@ class Demo1ApplicationTests {
 		assertEquals(8, reader.readEvents().size());
 		assertEquals("List(concert rock 1, 2019-07-09 18:00, singers2)", reader.readEvents().head().toString());
 		assertEquals("List(a, b, singers2)", reader.readEvents().last().toString());
+	}
+	private void allEventsAreReadJson(EventsConnector reader) {
+		assertEquals(4,reader.readEvents().size());
+		assertEquals("List(Concert Rock, 12.08.2019, Eminem)", reader.readEvents().head().toString());
+		assertEquals("List(Concert Classic, 29.12.2019, Alan Walker)", reader.readEvents().last().toString());
 	}
 
 	@Test
@@ -88,4 +95,10 @@ class Demo1ApplicationTests {
 			throw new RuntimeException(e);
 		}
 	}
+	@Test
+	void allEventsAreReadFromDanutzJsonReader() {
+		allEventsAreReadJson(new DanutzJsonReader(TARGET_EVENTS_JSON));
+	}
+	
+	
 }

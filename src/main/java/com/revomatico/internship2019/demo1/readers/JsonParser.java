@@ -34,8 +34,9 @@ public JsonParser(String path) {
 
 		     JSONArray Obj_JSONArray1=events_object.getJSONArray("name");
 		     JSONArray Obj_JSONArray2=events_object.getJSONArray("date");
+		     JSONArray Obj_JSONArray3=events_object.getJSONArray("singer");
 		     for(int i=0;i<Obj_JSONArray1.length();i++) {
-		     rows=rows.append(List.of(Obj_JSONArray1.getString(i),Obj_JSONArray2.getString(i)));
+		  rows=rows.append(List.of(Obj_JSONArray1.getString(i),Obj_JSONArray2.getString(i),Obj_JSONArray3.getString(i)));
 		     }
 	     }catch(Exception e) {
 	    	 e.printStackTrace();
