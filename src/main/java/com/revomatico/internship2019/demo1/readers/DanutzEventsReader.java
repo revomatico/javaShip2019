@@ -24,7 +24,7 @@ public class DanutzEventsReader implements EventsConnector {
   @Override
   public void addEvent(Event event) {
     List<List<String>> events = readEvents();
-    events = events.append(List.of(event.name,event.date));
+    events = events.append(List.of(event.name,event.date, event.singer).appendAll(event.details));
     new CsvParser(path).writeCsv(events);
   }
 }

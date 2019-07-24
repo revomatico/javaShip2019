@@ -51,12 +51,16 @@ public class CsvParser {
             String[] nextRecord = csvReader.readNext();
             Preconditions.checkArgument(nextRecord.length>2,"This code works for maximum 2 columns. The others are just ignored. We just found a row with more columns: %s. Offending line %s",nextRecord.length, List.of(nextRecord));
             if(!nextRecord[0].matches("name") && !nextRecord[1].matches("date")) {
-            	String firstRecord = filterKeyWord(nextRecord[0],restrictedKeywords);
-                rows = rows.append(List.of(firstRecord, nextRecord[1]));
+            	//String firstRecord = filterKeyWord(nextRecord[0],restrictedKeywords);
+            	List<String> line = List.of(nextRecord);
+                rows = rows.append(line);
             }
             while ((nextRecord = csvReader.readNext()) != null) {
                 String firstRecord = filterKeyWord(nextRecord[0],restrictedKeywords);
-                rows = rows.append(List.of(firstRecord, nextRecord[1]));
+                //rows = rows.append(List.of(firstRecord, nextRecord[1]));
+                nextRecord[0]=nextRecord[0].replace(nextRecord[0],firstRecord);
+                List<String> line =List.of(nextRecord);
+                rows=rows.append(line);
             }
         	
             return rows;
