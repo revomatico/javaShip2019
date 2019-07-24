@@ -1,5 +1,6 @@
 package com.revomatico.internship2019.demo1;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -34,6 +35,7 @@ public class HomeControllerTest {
   @Test
   void addEventsToRepository() {
     assertNotNull(controller);
-    assertEquals("<link rel=\"stylesheet\" href=\"//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css\">Events:<br/><table><tr><th>name</th><th>date</th></tr><tr><td>concert_strauss</td><td>data1</td></tr><tr><td>concert2</td><td>data2</td></tr></table>",controller.home());
+    assertThat(controller.home())
+      .contains("<table><tr><th>name</th><th>date</th></tr><tr><td>concert_strauss</td><td>data1</td></tr>");
   }
 }

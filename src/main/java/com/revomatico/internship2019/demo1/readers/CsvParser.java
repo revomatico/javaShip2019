@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.common.base.Preconditions;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import io.vavr.collection.List;
@@ -48,6 +49,7 @@ public class CsvParser {
             CSVReader csvReader = new CSVReader(reader);
         ) {
             String[] nextRecord = csvReader.readNext();
+            Preconditions.checkArgument(nextRecord.length>2,"This code works for maximum 2 columns. The others are just ignored. We just found a row with more columns: %s. Offending line %s",nextRecord.length, List.of(nextRecord));
             if(!nextRecord[0].matches("name") && !nextRecord[1].matches("date")) {
             	String firstRecord = filterKeyWord(nextRecord[0],restrictedKeywords);
                 rows = rows.append(List.of(firstRecord, nextRecord[1]));
@@ -75,16 +77,7 @@ public class CsvParser {
     	        CSVWriter writer = new CSVWriter(outputfile); 
     	  
     	        // add data to csv
-    	        
-    	        int aux = events.size();
-    	        int i = 0;
-    	        String[] data1 = new String[2];
-    	        while(i < aux ) {
-    	        	data1[0] = events.get(i).get(0);
-        	        data1[1] = events.get(i).get(1);
-        	        writer.writeNext(data1);
-    	        	i++;
-    	        }
+    	        events.map(row->row.toJavaArray(String[]::new)).forEach(row-> writer.writeNext(row));
 
     	        // closing writer connection 
     	        writer.close(); 

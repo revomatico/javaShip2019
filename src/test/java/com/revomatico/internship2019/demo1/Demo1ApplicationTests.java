@@ -5,12 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.File;
 import java.io.IOException;
 
+import com.google.common.base.Preconditions;
 import com.revomatico.internship2019.demo1.readers.DanutzEventsReader;
 import com.revomatico.internship2019.demo1.readers.Event;
 import com.revomatico.internship2019.demo1.readers.EventsConnector;
 import com.revomatico.internship2019.demo1.readers.EventsRepository;
 import com.revomatico.internship2019.demo1.readers.SimoEventsReader;
 import org.apache.commons.io.FileUtils;
+import org.junit.Assert;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -32,10 +34,10 @@ class Demo1ApplicationTests {
     resetTestBeforeWrite();
     assertEquals(8, reader.readEvents().size());
     assertEquals(
-        "List(concert rock 1, 2019-07-09 18:00)",
+        "List(concert rock 1, 2019-07-09 18:00, singers2)",
         reader.readEvents().head().toString());
     assertEquals(
-        "List(a, b)",
+        "List(a, b, singers2)",
         reader.readEvents().last().toString());
   }
 
@@ -78,7 +80,10 @@ class Demo1ApplicationTests {
 
   private void resetTestBeforeWrite() {
     try {
-      FileUtils.copyFile(new File("src/main/resources/events.csv"), new File(TARGET_EVENTS_CSV));
+      final File srcFile = new File("src/main/resources/events.csv");
+      final File destFile = new File(TARGET_EVENTS_CSV);
+      FileUtils.copyFile(srcFile, destFile);
+      Assert.assertEquals(srcFile.length(),destFile.length());
     } catch (IOException e) {
       throw new RuntimeException(e);
     }

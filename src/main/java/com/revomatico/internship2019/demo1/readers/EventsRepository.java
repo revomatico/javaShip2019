@@ -14,7 +14,7 @@ public class EventsRepository {
   }
 
   public List<Event> readEvents() {
-    events = connector.readEvents().map(x/* :List<String> */ -> new Event(x.get(0), x.get(1), x.get(2), x));
+    events = connector.readEventsAndValidate().map(x/* :List<String> */ -> new Event(x.get(0), x.get(1), x.get(2), x));
     return events;
   }
 
