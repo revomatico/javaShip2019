@@ -9,10 +9,10 @@ import com.opencsv.CSVReader;
 import com.revomatico.internship2019.demo1.controller.WrappedException;
 import io.vavr.collection.List;
 
-public class SimoEventsReader implements EventsConnector {
+public class SimoEventsConnector implements EventsConnector {
   private String path;
 
-  public SimoEventsReader(String path) {
+  public SimoEventsConnector(String path) {
     this.path = path;
   }
   @Override

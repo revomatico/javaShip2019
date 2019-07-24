@@ -6,6 +6,7 @@ import java.util.Random;
 import javax.annotation.PostConstruct;
 
 import com.google.common.base.Preconditions;
+import com.revomatico.internship2019.demo1.connectors.google.GoogleCalendarEventsConnector;
 //import com.revomatico.internship2019.demo1.readers.DanutzEventsReader;
 import com.revomatico.internship2019.demo1.readers.Event;
 import com.revomatico.internship2019.demo1.readers.EventsConnector;
@@ -26,7 +27,8 @@ public class HomeController {
   public void init() {
     Preconditions.checkNotNull(databaseController);
 
-    repo = new EventsRepository(databaseController
+    repo = new EventsRepository(new GoogleCalendarEventsConnector()
+    		//databaseController
     // new AdConnector()
     // new LdapConnector()
     // new DanutzJsonReader("https://danutz99.github.io/json/db.json")
