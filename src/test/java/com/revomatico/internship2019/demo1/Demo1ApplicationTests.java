@@ -77,7 +77,7 @@ class Demo1ApplicationTests {
 
 	@Test
 	void testCalendarFromGoogle() {
-		test1(10, new GoogleCalendarEventsConnector());
+		test1(10, new GoogleCalendarEventsConnector("no secret"));
 	}
 	private void test1(int expectedEvents, EventsConnector eventsReader) {
 		resetTestBeforeWrite();

@@ -13,6 +13,7 @@ import com.revomatico.internship2019.demo1.readers.EventsConnector;
 import com.revomatico.internship2019.demo1.readers.EventsRepository;
 import io.vavr.collection.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,11 +24,13 @@ public class HomeController {
   private EventsConnector databaseController;
   private EventsRepository repo;
 
+  @Value("${events.google.clientSecret}")
+  private String googleClientSecret;
+  
   @PostConstruct
   public void init() {
     Preconditions.checkNotNull(databaseController);
-
-    repo = new EventsRepository(new GoogleCalendarEventsConnector()
+    repo = new EventsRepository(new GoogleCalendarEventsConnector(googleClientSecret)
     		//databaseController
     // new AdConnector()
     // new LdapConnector()
